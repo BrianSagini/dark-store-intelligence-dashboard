@@ -1,9 +1,9 @@
 table Stores
-	lineageTag: 65789b0a-860c-4216-8ad6-2c034d60740c
+	lineageTag: 33395457-f592-4c0e-8fd7-d92e5f91e91e
 
 	column store_id
 		dataType: string
-		lineageTag: 333ed9a1-6e24-4e6e-a1dd-0f8dfc181cc1
+		lineageTag: 8190f420-5b12-4384-971a-60db1f9b6884
 		summarizeBy: none
 		sourceColumn: store_id
 
@@ -11,7 +11,7 @@ table Stores
 
 	column name
 		dataType: string
-		lineageTag: a2367bc3-b76d-4989-9909-64c749ce85bc
+		lineageTag: 403c3006-2e35-42c3-ba19-1ae3ff338b4d
 		summarizeBy: none
 		sourceColumn: name
 
@@ -19,7 +19,7 @@ table Stores
 
 	column region
 		dataType: string
-		lineageTag: 2c51f243-cac4-469d-9c2d-1c6b1a6635f7
+		lineageTag: f67003ba-9def-4136-a149-1e4cebbb0d8b
 		summarizeBy: none
 		sourceColumn: region
 
@@ -27,7 +27,7 @@ table Stores
 
 	column country
 		dataType: string
-		lineageTag: 90eaebeb-e259-4a8d-b42f-04e4d2be8131
+		lineageTag: 15fab236-f1a0-4075-8ead-472cd106a3e1
 		summarizeBy: none
 		sourceColumn: country
 
@@ -35,7 +35,7 @@ table Stores
 
 	column lat
 		dataType: double
-		lineageTag: 53f3cf51-e64b-493a-9d2f-e9164b8a68b6
+		lineageTag: d7883dd4-8c4e-440c-8979-85ffe1faff98
 		summarizeBy: none
 		sourceColumn: lat
 
@@ -43,7 +43,7 @@ table Stores
 
 	column lon
 		dataType: double
-		lineageTag: fadc02e6-4577-4c55-be00-e0e75187c741
+		lineageTag: 8d413363-d025-46c0-8a84-8eebd9ed3eef
 		summarizeBy: none
 		sourceColumn: lon
 
@@ -51,7 +51,7 @@ table Stores
 
 	column sqft
 		dataType: int64
-		lineageTag: 99211534-fce2-46a8-9c66-35721354ddae
+		lineageTag: bb48791f-947b-4eec-8361-f79c4e52e5c3
 		summarizeBy: none
 		formatString: #,0
 		sourceColumn: sqft
@@ -60,7 +60,7 @@ table Stores
 
 	column opening_date
 		dataType: dateTime
-		lineageTag: 5f8cebe3-f9f0-4eac-8aef-f03bbce9c132
+		lineageTag: 2a436e8f-3481-43e1-80f7-cd2df25e7bf8
 		summarizeBy: none
 		formatString: yyyy-MM-dd
 		sourceColumn: opening_date
@@ -69,7 +69,7 @@ table Stores
 
 	column is_synthetic
 		dataType: boolean
-		lineageTag: 327ce9aa-bf8e-4c67-93b1-c8720b5a9beb
+		lineageTag: 63c188da-c1e9-427c-90dd-1d28b8c7ccb5
 		summarizeBy: none
 		sourceColumn: is_synthetic
 

@@ -1,0 +1,68 @@
+{
+  "name": "DarkStoreTheme",
+  "dataColors": [
+    "#1B2A4A",
+    "#6C4AB6",
+    "#2E8B99",
+    "#2E9E5B",
+    "#E67E22",
+    "#C0392B",
+    "#94A3B8",
+    "#0F1B33"
+  ],
+  "good": "#2E9E5B",
+  "neutral": "#94A3B8",
+  "bad": "#C0392B",
+  "foreground": "#1A1A2E",
+  "background": "#FFFFFF",
+  "tableAccent": "#1B2A4A",
+  "textClasses": {
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#1A1A2E"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1A1A2E"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1B2A4A"
+    },
+    "callout": {
+      "fontSize": 32,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1B2A4A"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F3F0FA"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,9 +1,9 @@
 table StorePerformance
-	lineageTag: 620ec90f-037c-4f0f-9f86-0d1fd198c170
+	lineageTag: 39ad6471-8423-486c-b50c-dc80742f8318
 
 	column store_id
 		dataType: string
-		lineageTag: 78132153-593a-4646-ba4f-3dfc00a4ee45
+		lineageTag: 4e63110b-564c-4280-82db-f7bee75dbb2c
 		summarizeBy: none
 		sourceColumn: store_id
 
@@ -11,7 +11,7 @@ table StorePerformance
 
 	column store_name
 		dataType: string
-		lineageTag: 483d11b6-2887-4995-96c2-76185a706c37
+		lineageTag: 418f10e2-82fc-4d7b-9c2a-368c466397e2
 		summarizeBy: none
 		sourceColumn: store_name
 
@@ -19,7 +19,7 @@ table StorePerformance
 
 	column region
 		dataType: string
-		lineageTag: 7e581b43-3867-4863-8d91-c7b5200ed7bc
+		lineageTag: e4e2dc2e-2dce-4626-9fef-5c367877a669
 		summarizeBy: none
 		sourceColumn: region
 
@@ -27,7 +27,7 @@ table StorePerformance
 
 	column country
 		dataType: string
-		lineageTag: 9d15874b-5837-4a73-9af6-d8582b6c6b64
+		lineageTag: 00ff4a48-2289-4e15-9457-18812e84a509
 		summarizeBy: none
 		sourceColumn: country
 
@@ -35,7 +35,7 @@ table StorePerformance
 
 	column sqft
 		dataType: int64
-		lineageTag: acc9ca18-12bd-444d-b9a7-5b6d3f0f4424
+		lineageTag: 4e2b36ac-b51b-4474-8670-8388d0ce50af
 		summarizeBy: none
 		formatString: #,0
 		sourceColumn: sqft
@@ -44,7 +44,7 @@ table StorePerformance
 
 	column month
 		dataType: dateTime
-		lineageTag: e3e43824-519c-484e-951f-b321f9258068
+		lineageTag: 019b2f59-5126-411b-b63d-fad052454dcf
 		summarizeBy: none
 		formatString: yyyy-MM
 		sourceColumn: month
@@ -53,7 +53,7 @@ table StorePerformance
 
 	column revenue
 		dataType: decimal
-		lineageTag: 4ee1d72f-cd9b-4afd-ac96-d38edf209cc5
+		lineageTag: 87ce091f-5718-4b05-b1f2-3cb5712bb657
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: revenue
@@ -62,7 +62,7 @@ table StorePerformance
 
 	column cogs_estimate
 		dataType: decimal
-		lineageTag: 69d593ee-5889-4a34-b2d3-ef3a956f43e6
+		lineageTag: 492b3712-b7e2-465f-ae3a-733d165adf9e
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: cogs_estimate
@@ -71,7 +71,7 @@ table StorePerformance
 
 	column opex_estimate
 		dataType: decimal
-		lineageTag: 3fad23c3-cf7f-4274-9f51-71b25af1d98d
+		lineageTag: 1a863063-c61c-4ffd-9940-9ade82a20237
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: opex_estimate
@@ -80,7 +80,7 @@ table StorePerformance
 
 	column profit_estimate
 		dataType: decimal
-		lineageTag: 51929522-72eb-4239-9779-52a2a1d72cce
+		lineageTag: 3b14af90-c692-4ff5-ba0a-3b52136274dc
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: profit_estimate
@@ -89,7 +89,7 @@ table StorePerformance
 
 	column roi_pct
 		dataType: double
-		lineageTag: 19707aa1-ab1d-4fd1-9962-5e502b0ffb6c
+		lineageTag: 5156c00e-b4e7-405f-9c18-4e990af837c8
 		summarizeBy: none
 		formatString: 0.0"%"
 		sourceColumn: roi_pct
@@ -98,11 +98,11 @@ table StorePerformance
 
 	measure 'Total Profit (Est.)' = SUM(StorePerformance[profit_estimate])
 		formatString: "$"#,0
-		lineageTag: 2635df47-0d8d-49af-87db-fad9c0d27af4
+		lineageTag: 5a680390-5878-4a58-8ef6-3da18e89c509
 
 	measure 'Avg ROI %' = AVERAGE(StorePerformance[roi_pct])
 		formatString: 0.0"%"
-		lineageTag: 6cc79438-4ff9-450f-9fff-52f70050c6f5
+		lineageTag: 47f478e2-cdf1-49bb-a770-123450ad936f
 
 	partition StorePerformance = m
 		mode: import

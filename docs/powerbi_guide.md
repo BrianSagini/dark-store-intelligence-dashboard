@@ -3,19 +3,19 @@
 ## Status — read this first
 
 A real `.pbip` project exists at `powerbi/DarkStoreIntelligence.pbip`. Real and complete: 4 tables
-(3 fact views + a genuine `Stores` dimension from `dark_store.stores`), 3 relationships, all 8 DAX
-measures below, and **15 real visual objects across all 4 pages** (see
-[Visual inventory](#visual-inventory)) — every one binds to an actual table/column/measure.
+(3 fact views + a genuine `Stores` dimension), 3 relationships, all 8 DAX measures below, **23
+real visual objects across all 4 pages** (19 data visuals + a header/footer text box per page —
+see [Visual inventory](#visual-inventory)), a custom theme (`DarkStoreTheme.json`, wired into
+`report.json`), and semantic accent colors (see Design system).
 
-**Power BI Desktop validation status: NOT VERIFIED.** This `.pbip`'s sibling project (Climate
-Risk) was confirmed *openable* by Power BI Desktop in one clean, safe test — full authoring ribbon,
-"Loading report" state. A second validation attempt on that same file captured unrelated content
-from another window on this live desktop instead (a focus-tracking failure, not a Power BI issue)
-— deleted immediately, never committed — and after that second incident, further screenshot-based
-validation was stopped entirely by explicit decision, before reaching this repo specifically. The
-outer project structure follows the same pattern already confirmed acceptable; **the visual JSON
-below was authored to the best available knowledge of the PBIR schema but was never itself opened
-in Power BI Desktop.** If you open this file and something doesn't render, that's real information.
+**Power BI Desktop validation status: PARTIALLY VERIFIED, via the sibling Climate Risk project.**
+The project owner actually opened `ClimateRisk.pbip` and reported real bugs (blank charts, no
+titles, a literal `\$`, wrong date format, maps disabled for their tenant) — the root causes were
+found and fixed identically across all 4 projects, this one included (see Climate's
+`docs/powerbi_guide.md` for the full diagnostic account, not repeated here). **This project's own
+file has not been independently reopened** — its fixes and this round's styling (theme,
+header/footer, accent colors) are structurally validated (every field/measure reference checked
+against the live model, no overlaps, no blank pages) but not yet confirmed by an actual render.
 
 ## Data connectivity
 
@@ -40,11 +40,24 @@ Total Stockout Days = SUM(powerbi_inventory_summary[stockout_days])
 Avg Days of Supply = AVERAGE(powerbi_inventory_summary[days_of_supply])
 ```
 
-## Design system
+## Design system — now actually applied, not just documented
 
-Base: near-white `#F7F8FA` background, Segoe UI. This project's accents: primary navy `#1B2A4A`,
-secondary purple `#6C4AB6`, teal `#2E8B99`, positive green `#2E9E5B` (revenue/profit up), warning
-orange `#E67E22` (stock concern), critical red `#C0392B` (loss/stockout).
+Segoe UI. Accents: primary navy `#1B2A4A`, secondary purple `#6C4AB6`, teal `#2E8B99`, positive
+green `#2E9E5B`, warning orange `#E67E22`, critical red `#C0392B`.
+
+**Background**: a pale purple-tinted canvas `#F3F0FA` (not neutral gray) behind white visual
+containers — same reasoning as Climate's (see that project's guide for the 3 options weighed):
+visibly branded without competing with in-chart accent colors. Set via `DarkStoreTheme.json`'s
+`visualStyles.*.*.outspace`.
+
+**Per-visual accent colors** (`dataPoint.defaultColor`, single-measure charts only): Revenue by
+Store, Revenue Over Time, Revenue by Region, Profit (Est.) by Store, Revenue by Month, and the
+Total Revenue/Total Profit cards → positive green (revenue/profit is good). Avg Turnover Ratio by
+Store → secondary purple (neutral operational metric). Stockout Days by Store → warning orange (a
+problem indicator). Everything else is theme-driven.
+
+**Header/footer**: every page gets a themed header (report — page name + data-source line) and
+footer (source + methodology pointer) as real `textbox` visuals.
 
 ## Visual inventory
 

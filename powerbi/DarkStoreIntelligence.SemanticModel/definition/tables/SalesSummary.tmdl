@@ -1,9 +1,9 @@
 table SalesSummary
-	lineageTag: 74e29c15-a246-49f7-adbf-80333158ca67
+	lineageTag: e7ce2028-49d8-44b6-a4f5-5120abc88ce1
 
 	column store_id
 		dataType: string
-		lineageTag: c6c33fb8-19b1-4c5a-bbad-7aa8c051e2f0
+		lineageTag: bf7ae32d-1983-44bd-9502-8e8549c4e7c3
 		summarizeBy: none
 		sourceColumn: store_id
 
@@ -11,7 +11,7 @@ table SalesSummary
 
 	column store_name
 		dataType: string
-		lineageTag: c75fba0a-3dc1-41bf-9753-b72541ddd6c4
+		lineageTag: a4a1c6c3-98e8-45c0-a623-09c6e5584f87
 		summarizeBy: none
 		sourceColumn: store_name
 
@@ -19,7 +19,7 @@ table SalesSummary
 
 	column region
 		dataType: string
-		lineageTag: 168da3e0-6277-4fc7-aff1-d617e0fb6ac1
+		lineageTag: fe6d154a-9eda-46e0-b0e0-c6e76dc5d684
 		summarizeBy: none
 		sourceColumn: region
 
@@ -27,7 +27,7 @@ table SalesSummary
 
 	column country
 		dataType: string
-		lineageTag: d9bd3ac7-2e57-4e5e-8497-395e7ff8b492
+		lineageTag: 5a61b8f8-6c1e-47e3-b250-9e7c915a9e98
 		summarizeBy: none
 		sourceColumn: country
 
@@ -35,7 +35,7 @@ table SalesSummary
 
 	column metric_date
 		dataType: dateTime
-		lineageTag: c412b7fb-37d0-4b53-8302-b54d8b34fbde
+		lineageTag: 44459f41-dbe3-461e-8269-0aedf6d6fabb
 		summarizeBy: none
 		formatString: yyyy-MM-dd
 		sourceColumn: metric_date
@@ -44,7 +44,7 @@ table SalesSummary
 
 	column revenue
 		dataType: decimal
-		lineageTag: 4ec5f68f-a6c7-4578-a630-014766b14889
+		lineageTag: bea52fa7-13be-4d55-8513-0abfd9c53df7
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: revenue
@@ -53,7 +53,7 @@ table SalesSummary
 
 	column orders_count
 		dataType: int64
-		lineageTag: 31a7952b-f9e0-4845-bc39-b77de06ac0cc
+		lineageTag: e3260411-e43f-4e4e-bc97-c7289c6a88bb
 		summarizeBy: none
 		formatString: #,0
 		sourceColumn: orders_count
@@ -62,7 +62,7 @@ table SalesSummary
 
 	column units_sold
 		dataType: int64
-		lineageTag: 68d4b6ed-2e0d-4a3d-8cc6-428a6ecd0b29
+		lineageTag: e47b98c7-2685-41e7-b3c9-78eb3e027c6d
 		summarizeBy: none
 		formatString: #,0
 		sourceColumn: units_sold
@@ -71,7 +71,7 @@ table SalesSummary
 
 	column avg_order_value
 		dataType: decimal
-		lineageTag: c492da54-c3bd-40db-8ff9-f3205bd6b849
+		lineageTag: 2540024e-ab29-4072-ab05-1a47d534c7d0
 		summarizeBy: none
 		formatString: "$"#,0
 		sourceColumn: avg_order_value
@@ -80,15 +80,15 @@ table SalesSummary
 
 	measure 'Total Revenue' = SUM(SalesSummary[revenue])
 		formatString: "$"#,0
-		lineageTag: dd6a1262-6a67-4620-8323-520342dd4636
+		lineageTag: 0a5084c3-6be4-4f0b-b69a-c737826d70f6
 
 	measure 'Total Orders' = SUM(SalesSummary[orders_count])
 		formatString: #,0
-		lineageTag: 16a35583-2144-4dde-911f-ade88c94613e
+		lineageTag: f2c89dfb-b086-4e1f-8cd1-22082df34c19
 
 	measure 'Avg Order Value' = DIVIDE([Total Revenue], [Total Orders])
 		formatString: "$"#,0
-		lineageTag: f309bd54-4d69-48c3-a7f8-614b11bea878
+		lineageTag: f21c1be6-8a3f-4b06-8486-7e06588b2431
 
 	partition SalesSummary = m
 		mode: import

@@ -1,11 +1,11 @@
-relationship 3c51814c-5435-4603-8b5e-27c8f8ae22e4
+relationship 08389bb2-b241-4a31-a346-5900947fd9a3
 	fromColumn: SalesSummary.store_id
 	toColumn: Stores.store_id
 
-relationship 338e7d6e-87e0-4215-9472-deb50238a623
+relationship 045e4e18-4129-43f6-b02d-38e97faffaee
 	fromColumn: InventorySummary.store_id
 	toColumn: Stores.store_id
 
-relationship 3c71fb5a-22da-4795-9b3c-c7818f4c3436
+relationship fb3d8443-e70a-4d26-85da-313906051a3a
 	fromColumn: StorePerformance.store_id
 	toColumn: Stores.store_id
