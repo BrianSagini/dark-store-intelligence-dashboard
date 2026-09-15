@@ -1,46 +1,46 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "2f305e6d-8c60-4fd3-9e55-df0ff5c483e3",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "8379d569-8f4d-42df-a8bd-635a70c8db7e",
   "position": {
-    "x": 740,
-    "y": 60,
+    "x": 980,
+    "y": 200,
     "z": 0,
-    "width": 220,
-    "height": 120,
+    "width": 280,
+    "height": 480,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "slicer",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "StorePerformance"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "Total Profit (Est.)"
+                  "Property": "name"
                 }
               },
-              "queryRef": "StorePerformance.Total Profit (Est.)",
-              "nativeQueryRef": "Total Profit (Est.)"
+              "queryRef": "Stores.name",
+              "nativeQueryRef": "name"
             }
           ]
         }
       }
     },
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Profit (Est.)'"
+                  "Value": "'Store'"
                 }
               }
             },

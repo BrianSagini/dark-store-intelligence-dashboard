@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "c1384864-3443-45c6-8bb4-8a26e138ccdb",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "78382740-e9b3-4f47-9c94-3fda573a8fec",
   "position": {
     "x": 20,
-    "y": 400,
+    "y": 60,
     "z": 0,
     "width": 1000,
-    "height": 260,
+    "height": 320,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,12 @@
                       "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "region"
+                  "Property": "metric_date"
                 }
               },
-              "queryRef": "SalesSummary.region",
-              "nativeQueryRef": "region"
+              "queryRef": "SalesSummary.metric_date",
+              "nativeQueryRef": "metric_date",
+              "active": true
             }
           ]
         },
@@ -52,13 +53,41 @@
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Region'"
+                  "Value": "'Revenue Over Time'"
                 }
               }
             },

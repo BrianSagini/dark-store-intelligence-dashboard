@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "27d72a6a-d800-4875-bfff-5902f90042c8",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "4cb2fc52-0c26-4770-beac-a0e45704a1dc",
   "position": {
-    "x": 20,
+    "x": 660,
     "y": 60,
     "z": 0,
-    "width": 1000,
-    "height": 320,
+    "width": 600,
+    "height": 300,
     "tabOrder": 0
   },
   "visual": {
@@ -20,14 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "SalesSummary"
+                      "Entity": "StorePerformance"
                     }
                   },
-                  "Property": "metric_date"
+                  "Property": "month"
                 }
               },
-              "queryRef": "SalesSummary.metric_date",
-              "nativeQueryRef": "metric_date"
+              "queryRef": "StorePerformance.month",
+              "nativeQueryRef": "month",
+              "active": true
             }
           ]
         },
@@ -38,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "SalesSummary"
+                      "Entity": "StorePerformance"
                     }
                   },
                   "Property": "revenue"
                 }
               },
-              "queryRef": "SalesSummary.revenue",
+              "queryRef": "StorePerformance.revenue",
               "nativeQueryRef": "revenue"
             }
           ]
@@ -52,13 +53,41 @@
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Over Time'"
+                  "Value": "'Revenue by Month'"
                 }
               }
             },

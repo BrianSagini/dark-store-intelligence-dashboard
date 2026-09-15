@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "07ba4435-ef61-4f7a-a025-1f4903719e42",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ffc5045b-45d1-4ec3-a835-991ef45d9f32",
   "position": {
-    "x": 660,
+    "x": 20,
     "y": 60,
     "z": 0,
     "width": 600,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "InventorySummary.store_name",
-              "nativeQueryRef": "store_name"
+              "nativeQueryRef": "store_name",
+              "active": true
             }
           ]
         },
@@ -41,24 +42,52 @@
                       "Entity": "InventorySummary"
                     }
                   },
-                  "Property": "stockout_days"
+                  "Property": "turnover_ratio"
                 }
               },
-              "queryRef": "InventorySummary.stockout_days",
-              "nativeQueryRef": "stockout_days"
+              "queryRef": "InventorySummary.turnover_ratio",
+              "nativeQueryRef": "turnover_ratio"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stockout Days by Store'"
+                  "Value": "'Avg Turnover Ratio by Store'"
                 }
               }
             },

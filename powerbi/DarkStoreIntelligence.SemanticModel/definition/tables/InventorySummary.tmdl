@@ -1,9 +1,9 @@
 table InventorySummary
-	lineageTag: 68d58ca8-c841-4b4e-ab2a-d3f7b54d07c6
+	lineageTag: 640f8c32-daf8-4bd9-91b1-fb1094b687b1
 
 	column store_id
 		dataType: string
-		lineageTag: e1e4d4d2-3b63-4c31-ab3d-3c2d4aad3880
+		lineageTag: 48127400-422f-4643-9f7f-5bd20d1c7174
 		summarizeBy: none
 		sourceColumn: store_id
 
@@ -11,7 +11,7 @@ table InventorySummary
 
 	column store_name
 		dataType: string
-		lineageTag: 49571307-fab2-4f8d-9418-3ef518da4008
+		lineageTag: e84c06e2-1c04-45c0-91e5-5b72ce09551c
 		summarizeBy: none
 		sourceColumn: store_name
 
@@ -19,7 +19,7 @@ table InventorySummary
 
 	column stock_code
 		dataType: string
-		lineageTag: 8b64ca3f-512d-44fc-9a47-fe4008872d58
+		lineageTag: b29af8e6-ce7e-490e-b01f-010f0996265c
 		summarizeBy: none
 		sourceColumn: stock_code
 
@@ -27,7 +27,7 @@ table InventorySummary
 
 	column description
 		dataType: string
-		lineageTag: c7230f28-03ed-4ab2-a992-3b321cc6dbe8
+		lineageTag: ebf2e18f-92f2-4e08-a4da-219fde96ef05
 		summarizeBy: none
 		sourceColumn: description
 
@@ -35,7 +35,7 @@ table InventorySummary
 
 	column avg_daily_demand
 		dataType: double
-		lineageTag: c5b7721f-96a3-4de8-9c0d-61e6c9939b5f
+		lineageTag: 447a0e23-d7db-440c-b07e-ab7ed1f1d109
 		summarizeBy: none
 		formatString: 0.0
 		sourceColumn: avg_daily_demand
@@ -44,7 +44,7 @@ table InventorySummary
 
 	column avg_stock_on_hand
 		dataType: double
-		lineageTag: 79316063-e59d-45e4-9daa-c94d1120d17f
+		lineageTag: 54083078-a1c6-4fe5-b90c-13938ad1fb8a
 		summarizeBy: none
 		formatString: 0.0
 		sourceColumn: avg_stock_on_hand
@@ -53,7 +53,7 @@ table InventorySummary
 
 	column days_of_supply
 		dataType: double
-		lineageTag: 44bab166-1a36-47b1-b86b-6ddf46ecde44
+		lineageTag: d8e7fbed-b634-4cee-b025-e4481e8e6dc8
 		summarizeBy: none
 		formatString: 0.0
 		sourceColumn: days_of_supply
@@ -62,7 +62,7 @@ table InventorySummary
 
 	column stockout_days
 		dataType: int64
-		lineageTag: 80fdbd05-6e4c-43e0-a21b-51835db4f8b6
+		lineageTag: 83959db0-b550-410a-bac1-1928ee3ba819
 		summarizeBy: none
 		formatString: 0
 		sourceColumn: stockout_days
@@ -71,7 +71,7 @@ table InventorySummary
 
 	column turnover_ratio
 		dataType: double
-		lineageTag: 13dd0895-85ef-41b3-a43a-b5a12bd8bfaa
+		lineageTag: 84ce4272-693e-4238-a257-f71cbecdbdab
 		summarizeBy: none
 		formatString: 0.00
 		sourceColumn: turnover_ratio
@@ -80,15 +80,15 @@ table InventorySummary
 
 	measure 'Avg Turnover Ratio' = AVERAGE(InventorySummary[turnover_ratio])
 		formatString: 0.00
-		lineageTag: 6caa19e4-4df4-44a5-80fc-a7b8482ebf42
+		lineageTag: 211e4cf0-1344-4388-9746-0d47ba16b58e
 
 	measure 'Total Stockout Days' = SUM(InventorySummary[stockout_days])
 		formatString: #,0
-		lineageTag: 0e38356a-23a3-46b6-8f71-0b8c67030f34
+		lineageTag: 9fda80b9-4550-4874-bff7-47d2d61ba48c
 
 	measure 'Avg Days of Supply' = AVERAGE(InventorySummary[days_of_supply])
 		formatString: 0.0
-		lineageTag: d0afb698-73d2-4671-9513-6f5ef7bc4fa5
+		lineageTag: c835d68c-5562-411a-9319-b253e3eada08
 
 	partition InventorySummary = m
 		mode: import

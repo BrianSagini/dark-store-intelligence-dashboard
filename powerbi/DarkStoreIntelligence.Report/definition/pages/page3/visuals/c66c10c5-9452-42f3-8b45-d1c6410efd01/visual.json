@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "151823d5-0478-4407-942a-b58fe904e3b8",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c66c10c5-9452-42f3-8b45-d1c6410efd01",
   "position": {
     "x": 20,
     "y": 380,
     "z": 0,
-    "width": 1240,
-    "height": 280,
+    "width": 600,
+    "height": 300,
     "tabOrder": 0
   },
   "visual": {
@@ -20,83 +20,83 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventorySummary"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "store_name"
+                  "Property": "name"
                 }
               },
-              "queryRef": "InventorySummary.store_name",
-              "nativeQueryRef": "store_name"
+              "queryRef": "Stores.name",
+              "nativeQueryRef": "name"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventorySummary"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "stock_code"
+                  "Property": "region"
                 }
               },
-              "queryRef": "InventorySummary.stock_code",
-              "nativeQueryRef": "stock_code"
+              "queryRef": "Stores.region",
+              "nativeQueryRef": "region"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventorySummary"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "description"
+                  "Property": "country"
                 }
               },
-              "queryRef": "InventorySummary.description",
-              "nativeQueryRef": "description"
+              "queryRef": "Stores.country",
+              "nativeQueryRef": "country"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventorySummary"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "days_of_supply"
+                  "Property": "lat"
                 }
               },
-              "queryRef": "InventorySummary.days_of_supply",
-              "nativeQueryRef": "days_of_supply"
+              "queryRef": "Stores.lat",
+              "nativeQueryRef": "lat"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventorySummary"
+                      "Entity": "Stores"
                     }
                   },
-                  "Property": "turnover_ratio"
+                  "Property": "lon"
                 }
               },
-              "queryRef": "InventorySummary.turnover_ratio",
-              "nativeQueryRef": "turnover_ratio"
+              "queryRef": "Stores.lon",
+              "nativeQueryRef": "lon"
             }
           ]
         }
       }
     },
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inventory Detail'"
+                  "Value": "'Store Locations'"
                 }
               }
             },

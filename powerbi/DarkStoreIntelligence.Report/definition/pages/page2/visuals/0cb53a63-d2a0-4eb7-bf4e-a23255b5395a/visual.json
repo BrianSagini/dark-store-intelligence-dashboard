@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "1b64bfc6-dcb2-4d6c-ae40-f532dde27c70",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "0cb53a63-d2a0-4eb7-bf4e-a23255b5395a",
   "position": {
-    "x": 20,
+    "x": 660,
     "y": 60,
     "z": 0,
     "width": 600,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "InventorySummary.store_name",
-              "nativeQueryRef": "store_name"
+              "nativeQueryRef": "store_name",
+              "active": true
             }
           ]
         },
@@ -41,24 +42,52 @@
                       "Entity": "InventorySummary"
                     }
                   },
-                  "Property": "turnover_ratio"
+                  "Property": "stockout_days"
                 }
               },
-              "queryRef": "InventorySummary.turnover_ratio",
-              "nativeQueryRef": "turnover_ratio"
+              "queryRef": "InventorySummary.stockout_days",
+              "nativeQueryRef": "stockout_days"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg Turnover Ratio by Store'"
+                  "Value": "'Stockout Days by Store'"
                 }
               }
             },

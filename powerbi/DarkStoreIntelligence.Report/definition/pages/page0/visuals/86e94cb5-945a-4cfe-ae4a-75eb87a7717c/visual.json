@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "91a62730-51ca-4e53-8700-f567958f1a3a",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "86e94cb5-945a-4cfe-ae4a-75eb87a7717c",
   "position": {
     "x": 20,
-    "y": 60,
+    "y": 200,
     "z": 0,
-    "width": 600,
-    "height": 240,
+    "width": 940,
+    "height": 480,
     "tabOrder": 0
   },
   "visual": {
@@ -20,14 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "StorePerformance"
+                      "Entity": "SalesSummary"
                     }
                   },
                   "Property": "store_name"
                 }
               },
-              "queryRef": "StorePerformance.store_name",
-              "nativeQueryRef": "store_name"
+              "queryRef": "SalesSummary.store_name",
+              "nativeQueryRef": "store_name",
+              "active": true
             }
           ]
         },
@@ -38,27 +39,55 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "StorePerformance"
+                      "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "profit_estimate"
+                  "Property": "revenue"
                 }
               },
-              "queryRef": "StorePerformance.profit_estimate",
-              "nativeQueryRef": "profit_estimate"
+              "queryRef": "SalesSummary.revenue",
+              "nativeQueryRef": "revenue"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit (Est.) by Store'"
+                  "Value": "'Revenue by Store'"
                 }
               }
             },

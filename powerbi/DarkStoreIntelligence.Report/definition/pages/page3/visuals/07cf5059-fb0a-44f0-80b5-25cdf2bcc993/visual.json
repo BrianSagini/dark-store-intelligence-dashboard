@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "d7f05fe2-be84-4bff-9ae9-86b709ad9467",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "07cf5059-fb0a-44f0-80b5-25cdf2bcc993",
   "position": {
-    "x": 640,
+    "x": 20,
     "y": 60,
     "z": 0,
-    "width": 620,
-    "height": 240,
+    "width": 600,
+    "height": 300,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,12 @@
                       "Entity": "StorePerformance"
                     }
                   },
-                  "Property": "month"
+                  "Property": "store_name"
                 }
               },
-              "queryRef": "StorePerformance.month",
-              "nativeQueryRef": "month"
+              "queryRef": "StorePerformance.store_name",
+              "nativeQueryRef": "store_name",
+              "active": true
             }
           ]
         },
@@ -41,24 +42,52 @@
                       "Entity": "StorePerformance"
                     }
                   },
-                  "Property": "revenue"
+                  "Property": "profit_estimate"
                 }
               },
-              "queryRef": "StorePerformance.revenue",
-              "nativeQueryRef": "revenue"
+              "queryRef": "StorePerformance.profit_estimate",
+              "nativeQueryRef": "profit_estimate"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Month'"
+                  "Value": "'Profit (Est.) by Store'"
                 }
               }
             },

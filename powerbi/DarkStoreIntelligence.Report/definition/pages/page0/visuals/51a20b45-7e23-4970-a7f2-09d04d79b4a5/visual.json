@@ -1,46 +1,46 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "440b0006-94e5-4ed3-9452-f4bcfea41b1f",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "51a20b45-7e23-4970-a7f2-09d04d79b4a5",
   "position": {
-    "x": 980,
-    "y": 200,
+    "x": 500,
+    "y": 60,
     "z": 0,
-    "width": 280,
-    "height": 480,
+    "width": 220,
+    "height": 120,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "slicer",
+    "visualType": "card",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Stores"
+                      "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "name"
+                  "Property": "Avg Order Value"
                 }
               },
-              "queryRef": "Stores.name",
-              "nativeQueryRef": "name"
+              "queryRef": "SalesSummary.Avg Order Value",
+              "nativeQueryRef": "Avg Order Value"
             }
           ]
         }
       }
     },
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Store'"
+                  "Value": "'Avg Order Value'"
                 }
               }
             },

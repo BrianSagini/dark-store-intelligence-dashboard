@@ -1,9 +1,9 @@
 table Stores
-	lineageTag: 6895599f-d43c-412c-9fc3-20cf3f845248
+	lineageTag: 65789b0a-860c-4216-8ad6-2c034d60740c
 
 	column store_id
 		dataType: string
-		lineageTag: ded4b41b-e55c-478a-9bd0-e96d024bcda1
+		lineageTag: 333ed9a1-6e24-4e6e-a1dd-0f8dfc181cc1
 		summarizeBy: none
 		sourceColumn: store_id
 
@@ -11,7 +11,7 @@ table Stores
 
 	column name
 		dataType: string
-		lineageTag: 7b1f081b-308b-4399-a075-22e7ee6da3e9
+		lineageTag: a2367bc3-b76d-4989-9909-64c749ce85bc
 		summarizeBy: none
 		sourceColumn: name
 
@@ -19,7 +19,7 @@ table Stores
 
 	column region
 		dataType: string
-		lineageTag: 6d1b2f45-24c2-42d8-84fa-cefadba1b122
+		lineageTag: 2c51f243-cac4-469d-9c2d-1c6b1a6635f7
 		summarizeBy: none
 		sourceColumn: region
 
@@ -27,7 +27,7 @@ table Stores
 
 	column country
 		dataType: string
-		lineageTag: d223cfee-25ec-40ad-a3d0-21ffcc518dba
+		lineageTag: 90eaebeb-e259-4a8d-b42f-04e4d2be8131
 		summarizeBy: none
 		sourceColumn: country
 
@@ -35,7 +35,7 @@ table Stores
 
 	column lat
 		dataType: double
-		lineageTag: d89ccbde-c5de-4e22-a080-ddb1b7091bb6
+		lineageTag: 53f3cf51-e64b-493a-9d2f-e9164b8a68b6
 		summarizeBy: none
 		sourceColumn: lat
 
@@ -43,7 +43,7 @@ table Stores
 
 	column lon
 		dataType: double
-		lineageTag: fdbe09f5-1616-4f7a-a90b-bf77d730f6a1
+		lineageTag: fadc02e6-4577-4c55-be00-e0e75187c741
 		summarizeBy: none
 		sourceColumn: lon
 
@@ -51,7 +51,7 @@ table Stores
 
 	column sqft
 		dataType: int64
-		lineageTag: 8c4b4c40-9a6e-4934-9adb-9ea771d104b6
+		lineageTag: 99211534-fce2-46a8-9c66-35721354ddae
 		summarizeBy: none
 		formatString: #,0
 		sourceColumn: sqft
@@ -60,16 +60,16 @@ table Stores
 
 	column opening_date
 		dataType: dateTime
-		lineageTag: 9d235eac-c970-4997-b3ba-574c54f07341
+		lineageTag: 5f8cebe3-f9f0-4eac-8aef-f03bbce9c132
 		summarizeBy: none
-		formatString: yyyy-mm-dd
+		formatString: yyyy-MM-dd
 		sourceColumn: opening_date
 
 		annotation SummarizationSetBy = Automatic
 
 	column is_synthetic
 		dataType: boolean
-		lineageTag: c564944f-7b24-4117-a737-2930b719f0d5
+		lineageTag: 327ce9aa-bf8e-4c67-93b1-c8720b5a9beb
 		summarizeBy: none
 		sourceColumn: is_synthetic
 

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "01a04c7c-fe9d-41e5-8cc5-6bece37d89b2",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "534ef3a3-418d-4fe0-8762-f09b84b605b2",
   "position": {
     "x": 20,
-    "y": 200,
+    "y": 400,
     "z": 0,
-    "width": 940,
-    "height": 480,
+    "width": 1000,
+    "height": 260,
     "tabOrder": 0
   },
   "visual": {
@@ -23,11 +23,12 @@
                       "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "store_name"
+                  "Property": "region"
                 }
               },
-              "queryRef": "SalesSummary.store_name",
-              "nativeQueryRef": "store_name"
+              "queryRef": "SalesSummary.region",
+              "nativeQueryRef": "region",
+              "active": true
             }
           ]
         },
@@ -52,13 +53,41 @@
       }
     },
     "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Store'"
+                  "Value": "'Revenue by Region'"
                 }
               }
             },

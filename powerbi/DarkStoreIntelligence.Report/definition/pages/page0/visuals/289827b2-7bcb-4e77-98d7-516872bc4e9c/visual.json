@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
-  "name": "66100bc6-c12a-4a13-8dc6-c09a712f0a69",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "289827b2-7bcb-4e77-98d7-516872bc4e9c",
   "position": {
-    "x": 20,
+    "x": 260,
     "y": 60,
     "z": 0,
     "width": 220,
@@ -23,24 +23,24 @@
                       "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "Total Revenue"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "SalesSummary.Total Revenue",
-              "nativeQueryRef": "Total Revenue"
+              "queryRef": "SalesSummary.Total Orders",
+              "nativeQueryRef": "Total Orders"
             }
           ]
         }
       }
     },
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Revenue'"
+                  "Value": "'Total Orders'"
                 }
               }
             },
