@@ -1,0 +1,102 @@
+table SalesSummary
+	lineageTag: c081a401-51ef-496c-9bf3-59161ebaa3e7
+
+	column store_id
+		dataType: string
+		lineageTag: 741fc145-763a-4195-9f4e-27e2f9f73829
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_name
+		dataType: string
+		lineageTag: f4683f45-159c-4286-a834-9a2b9b33d8db
+		summarizeBy: none
+		sourceColumn: store_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 4e8fbde7-05fb-4643-9a95-8dd96d894030
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: fd086f2f-8c23-4e4f-b712-dc6fbdfffe3e
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_date
+		dataType: dateTime
+		lineageTag: 391de2f3-ec3d-48be-a261-fdafd014a754
+		summarizeBy: none
+		formatString: yyyy-mm-dd
+		sourceColumn: metric_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: decimal
+		lineageTag: d578194d-d3d7-42f0-a7ae-e92d94aba9f2
+		summarizeBy: none
+		formatString: "\$"#,0
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders_count
+		dataType: int64
+		lineageTag: c94e9af0-e10a-44e9-8970-e6925ae427e6
+		summarizeBy: none
+		formatString: #,0
+		sourceColumn: orders_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column units_sold
+		dataType: int64
+		lineageTag: 35c64745-6283-480c-a0d3-e88b5941c31c
+		summarizeBy: none
+		formatString: #,0
+		sourceColumn: units_sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_order_value
+		dataType: decimal
+		lineageTag: ea46265b-9ec4-4884-9bad-b30e2b48cf17
+		summarizeBy: none
+		formatString: "\$"#,0.00
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Total Revenue' = SUM(SalesSummary[revenue])
+		formatString: "\$"#,0
+		lineageTag: fd77ef4a-171d-4fd1-973f-10cbfd06aa8d
+
+	measure 'Total Orders' = SUM(SalesSummary[orders_count])
+		formatString: #,0
+		lineageTag: e839f112-6f0f-410c-bd41-d96df5c7229c
+
+	measure 'Avg Order Value' = DIVIDE([Total Revenue], [Total Orders])
+		formatString: "\$"#,0.00
+		lineageTag: f9a4b056-14a9-4aff-9321-96d862822c18
+
+	partition SalesSummary = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					dark_store_powerbi_sales_summary = Source{[Schema="dark_store",Item="powerbi_sales_summary"]}[Data]
+				in
+					dark_store_powerbi_sales_summary
+
+	annotation PBI_ResultType = Table

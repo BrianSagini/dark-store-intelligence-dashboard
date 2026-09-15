@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DarkStoreIntelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ce3eee0f-ebe6-438f-a9b0-622ea61f38d6"
+  }
+}

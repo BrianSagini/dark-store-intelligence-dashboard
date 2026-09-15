@@ -1,0 +1,116 @@
+table StorePerformance
+	lineageTag: 577d052e-003d-4297-9f64-27fbe1d02d8f
+
+	column store_id
+		dataType: string
+		lineageTag: d370c2b7-892b-4929-bfe1-3c8aa096dc60
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_name
+		dataType: string
+		lineageTag: cc8968bc-3589-499b-bce3-6ff51a1f401d
+		summarizeBy: none
+		sourceColumn: store_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: a4218bfc-89ab-4732-88eb-6300a56d942b
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: e5f4fbe2-f286-49fd-9bb2-0155565c033c
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column sqft
+		dataType: int64
+		lineageTag: a66af1b9-6535-43b3-bdd7-4ab91c59a5e0
+		summarizeBy: none
+		formatString: #,0
+		sourceColumn: sqft
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		lineageTag: fd262493-8bf9-42ec-ad5f-43b6e557dc6f
+		summarizeBy: none
+		formatString: yyyy-mm
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: decimal
+		lineageTag: 7d6577bd-b602-45b8-91a0-c97c1cf4df12
+		summarizeBy: none
+		formatString: "\$"#,0
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column cogs_estimate
+		dataType: decimal
+		lineageTag: a4297c0a-486b-4725-9b7b-353d1868ed9d
+		summarizeBy: none
+		formatString: "\$"#,0
+		sourceColumn: cogs_estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	column opex_estimate
+		dataType: decimal
+		lineageTag: c2ebc632-87c3-497b-8a80-0838f0175d16
+		summarizeBy: none
+		formatString: "\$"#,0
+		sourceColumn: opex_estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	column profit_estimate
+		dataType: decimal
+		lineageTag: 7fc0648e-687d-4a3a-8d7f-354ee01e299b
+		summarizeBy: none
+		formatString: "\$"#,0
+		sourceColumn: profit_estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	column roi_pct
+		dataType: double
+		lineageTag: d00f3039-eeda-4413-a50d-7cc008eb92a6
+		summarizeBy: none
+		formatString: 0.0"%"
+		sourceColumn: roi_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Total Profit (Est.)' = SUM(StorePerformance[profit_estimate])
+		formatString: "\$"#,0
+		lineageTag: 4ea6c78a-192f-477e-8c45-b7693e18f38f
+
+	measure 'Avg ROI %' = AVERAGE(StorePerformance[roi_pct])
+		formatString: 0.0"%"
+		lineageTag: 54a386b9-e25e-4f04-9baa-3b2ad0676365
+
+	partition StorePerformance = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					dark_store_powerbi_store_performance = Source{[Schema="dark_store",Item="powerbi_store_performance"]}[Data]
+				in
+					dark_store_powerbi_store_performance
+
+	annotation PBI_ResultType = Table

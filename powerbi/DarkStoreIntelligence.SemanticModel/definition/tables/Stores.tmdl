@@ -1,0 +1,87 @@
+table Stores
+	lineageTag: 6895599f-d43c-412c-9fc3-20cf3f845248
+
+	column store_id
+		dataType: string
+		lineageTag: ded4b41b-e55c-478a-9bd0-e96d024bcda1
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7b1f081b-308b-4399-a075-22e7ee6da3e9
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 6d1b2f45-24c2-42d8-84fa-cefadba1b122
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: d223cfee-25ec-40ad-a3d0-21ffcc518dba
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: d89ccbde-c5de-4e22-a080-ddb1b7091bb6
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+	column lon
+		dataType: double
+		lineageTag: fdbe09f5-1616-4f7a-a90b-bf77d730f6a1
+		summarizeBy: none
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+	column sqft
+		dataType: int64
+		lineageTag: 8c4b4c40-9a6e-4934-9adb-9ea771d104b6
+		summarizeBy: none
+		formatString: #,0
+		sourceColumn: sqft
+
+		annotation SummarizationSetBy = Automatic
+
+	column opening_date
+		dataType: dateTime
+		lineageTag: 9d235eac-c970-4997-b3ba-574c54f07341
+		summarizeBy: none
+		formatString: yyyy-mm-dd
+		sourceColumn: opening_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_synthetic
+		dataType: boolean
+		lineageTag: c564944f-7b24-4117-a737-2930b719f0d5
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stores = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					dark_store_stores = Source{[Schema="dark_store",Item="stores"]}[Data]
+				in
+					dark_store_stores
+
+	annotation PBI_ResultType = Table
