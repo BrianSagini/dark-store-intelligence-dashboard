@@ -36,17 +36,17 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "InventorySummary"
                     }
                   },
-                  "Property": "stockout_days"
+                  "Property": "Total Stockout Days"
                 }
               },
-              "queryRef": "InventorySummary.stockout_days",
-              "nativeQueryRef": "stockout_days"
+              "queryRef": "InventorySummary.Total Stockout Days",
+              "nativeQueryRef": "Total Stockout Days"
             }
           ]
         }

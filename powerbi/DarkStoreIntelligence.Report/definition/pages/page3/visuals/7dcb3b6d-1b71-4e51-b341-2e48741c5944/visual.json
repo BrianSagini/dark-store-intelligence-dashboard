@@ -36,17 +36,22 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "StorePerformance"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "StorePerformance"
+                        }
+                      },
+                      "Property": "revenue"
                     }
                   },
-                  "Property": "revenue"
+                  "Function": 0
                 }
               },
               "queryRef": "StorePerformance.revenue",
-              "nativeQueryRef": "revenue"
+              "nativeQueryRef": "Sum of revenue"
             }
           ]
         }

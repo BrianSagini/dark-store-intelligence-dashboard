@@ -36,17 +36,17 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "StorePerformance"
                     }
                   },
-                  "Property": "profit_estimate"
+                  "Property": "Total Profit (Est.)"
                 }
               },
-              "queryRef": "StorePerformance.profit_estimate",
-              "nativeQueryRef": "profit_estimate"
+              "queryRef": "StorePerformance.Total Profit (Est.)",
+              "nativeQueryRef": "Total Profit (Est.)"
             }
           ]
         }

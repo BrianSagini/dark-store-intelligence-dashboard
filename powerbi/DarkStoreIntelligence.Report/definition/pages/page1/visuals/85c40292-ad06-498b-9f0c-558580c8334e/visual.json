@@ -36,17 +36,17 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "SalesSummary"
                     }
                   },
-                  "Property": "revenue"
+                  "Property": "Total Revenue"
                 }
               },
-              "queryRef": "SalesSummary.revenue",
-              "nativeQueryRef": "revenue"
+              "queryRef": "SalesSummary.Total Revenue",
+              "nativeQueryRef": "Total Revenue"
             }
           ]
         }

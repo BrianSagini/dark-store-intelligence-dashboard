@@ -8,14 +8,30 @@ real visual objects across all 4 pages** (19 data visuals + a header/footer text
 see [Visual inventory](#visual-inventory)), a custom theme (`DarkStoreTheme.json`, wired into
 `report.json`), and semantic accent colors (see Design system).
 
-**Power BI Desktop validation status: PARTIALLY VERIFIED, via the sibling Climate Risk project.**
-The project owner actually opened `ClimateRisk.pbip` and reported real bugs (blank charts, no
-titles, a literal `\$`, wrong date format, maps disabled for their tenant) — the root causes were
-found and fixed identically across all 4 projects, this one included (see Climate's
-`docs/powerbi_guide.md` for the full diagnostic account, not repeated here). **This project's own
-file has not been independently reopened** — its fixes and this round's styling (theme,
-header/footer, accent colors) are structurally validated (every field/measure reference checked
-against the live model, no overlaps, no blank pages) but not yet confirmed by an actual render.
+**Power BI Desktop validation status: FULLY VERIFIED. All 4 pages confirmed rendering correctly
+with real data, real colors, in Power BI Desktop** (see `docs/evidence/page1_executive_overview.png`
+through `page4_store_performance.png`).
+
+The root causes behind the original round-2 bugs (blank charts, no titles, a literal `\$`, wrong
+date format, maps disabled for the tenant) were found on the sibling Climate Risk project and
+fixed identically here — see Climate's `docs/powerbi_guide.md` for that diagnostic account. This
+project's own file was then independently reopened in Desktop and found two *additional* bugs
+that the earlier fix round hadn't caught, since they only manifest with the accent colors and
+Aggregation-wrapped chart fields added afterward:
+1. Every `clusteredColumnChart`/`lineChart` Y-field was a raw unaggregated `Column` reference,
+   which renders as a totally empty plot area (no bars, no error). Fixed by pointing each chart at
+   its matching existing DAX measure (`Total Revenue`, `Total Stockout Days`, `Avg Turnover Ratio`,
+   `Total Profit (Est.)`) or, where none existed (Store Performance's `revenue`), wrapping the
+   column in Desktop's own `Aggregation` field shape.
+2. `objects.dataPoint.defaultColor` on the two green-accented cards (Total Revenue, Total Profit
+   (Est.)) is silently dropped by Desktop on load — cards need `objects.labels[0].properties.color`
+   instead. Both fixed and confirmed re-rendering green.
+
+Also fixed here: `themeCollection.baseTheme.reportVersionAtImport` in `report.json` was a bare
+string (`"5.55"`) instead of the required `{visual, report, page}` object — this didn't block this
+file from opening, but corrupted the identical field and caused a hard "issues that could not be
+resolved" load error on the Hiring and Fraud projects (see their guides). Fixed to match Climate's
+already-correct shape for consistency, even though this project happened to tolerate it.
 
 ## Data connectivity
 

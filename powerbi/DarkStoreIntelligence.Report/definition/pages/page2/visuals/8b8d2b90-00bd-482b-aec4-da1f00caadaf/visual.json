@@ -36,17 +36,17 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "InventorySummary"
                     }
                   },
-                  "Property": "turnover_ratio"
+                  "Property": "Avg Turnover Ratio"
                 }
               },
-              "queryRef": "InventorySummary.turnover_ratio",
-              "nativeQueryRef": "turnover_ratio"
+              "queryRef": "InventorySummary.Avg Turnover Ratio",
+              "nativeQueryRef": "Avg Turnover Ratio"
             }
           ]
         }
