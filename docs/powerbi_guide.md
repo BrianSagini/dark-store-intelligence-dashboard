@@ -4,7 +4,7 @@
 
 A real `.pbip` project exists at `powerbi/DarkStoreIntelligence.pbip`. Real and complete: 4 tables
 (3 fact views + a genuine `Stores` dimension from `dark_store.stores`), 3 relationships, all 8 DAX
-measures below, and **14 real visual objects across all 4 pages** (see
+measures below, and **15 real visual objects across all 4 pages** (see
 [Visual inventory](#visual-inventory)) — every one binds to an actual table/column/measure.
 
 **Power BI Desktop validation status: NOT VERIFIED.** This `.pbip`'s sibling project (Climate
@@ -70,9 +70,10 @@ Every visual below is a real object in `powerbi/DarkStoreIntelligence.Report/def
 **Page 4 — Store Performance**
 - Profit (Est.) by Store — Clustered column chart — Category `StorePerformance[store_name]`, Y `StorePerformance[profit_estimate]`
 - Revenue by Month — Line chart — Category `StorePerformance[month]`, Y `StorePerformance[revenue]`
+- Store Locations (Sized by Revenue) — Map (bubble) — Category `Stores[name]`, Latitude `Stores[lat]`, Longitude `Stores[lon]`, Size `SalesSummary[Total Revenue]`
 - Store Profitability Detail — Table — `StorePerformance[store_name]`, `[month]`, `[revenue]`, `[cogs_estimate]`, `[opex_estimate]`, `[profit_estimate]`, `[roi_pct]`
 
-**Total: 14 visuals across 4 pages.**
+**Total: 15 visuals across 4 pages.**
 
 ## Power BI Service publication: BLOCKED
 

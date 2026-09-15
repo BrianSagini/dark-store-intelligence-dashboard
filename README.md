@@ -61,7 +61,7 @@ assignment doesn't create real overlapping catchment areas). Full detail: `docs/
 ## Power BI
 
 A real `.pbip` project (`powerbi/DarkStoreIntelligence.pbip`) exists with the complete data model
-— 4 tables (including a genuine `Stores` dimension), 3 relationships, 8 DAX measures — **and 14
+— 4 tables (including a genuine `Stores` dimension), 3 relationships, 8 DAX measures — **and 15
 real visuals across all 4 pages** (see `docs/powerbi_guide.md`'s visual inventory). **Rendering is
 not verified**: the outer project structure was confirmed openable by Power BI Desktop in one safe
 test on a sibling project, but the visual JSON itself was never opened (a second validation
