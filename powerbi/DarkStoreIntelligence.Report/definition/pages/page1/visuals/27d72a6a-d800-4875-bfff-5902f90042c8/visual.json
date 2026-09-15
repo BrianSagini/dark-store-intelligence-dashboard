@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "27d72a6a-d800-4875-bfff-5902f90042c8",
+  "position": {
+    "x": 20,
+    "y": 60,
+    "z": 0,
+    "width": 1000,
+    "height": 320,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesSummary"
+                    }
+                  },
+                  "Property": "metric_date"
+                }
+              },
+              "queryRef": "SalesSummary.metric_date",
+              "nativeQueryRef": "metric_date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesSummary"
+                    }
+                  },
+                  "Property": "revenue"
+                }
+              },
+              "queryRef": "SalesSummary.revenue",
+              "nativeQueryRef": "revenue"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Revenue Over Time'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

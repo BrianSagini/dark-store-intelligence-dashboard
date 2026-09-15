@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "151823d5-0478-4407-942a-b58fe904e3b8",
+  "position": {
+    "x": 20,
+    "y": 380,
+    "z": 0,
+    "width": 1240,
+    "height": 280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventorySummary"
+                    }
+                  },
+                  "Property": "store_name"
+                }
+              },
+              "queryRef": "InventorySummary.store_name",
+              "nativeQueryRef": "store_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventorySummary"
+                    }
+                  },
+                  "Property": "stock_code"
+                }
+              },
+              "queryRef": "InventorySummary.stock_code",
+              "nativeQueryRef": "stock_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventorySummary"
+                    }
+                  },
+                  "Property": "description"
+                }
+              },
+              "queryRef": "InventorySummary.description",
+              "nativeQueryRef": "description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventorySummary"
+                    }
+                  },
+                  "Property": "days_of_supply"
+                }
+              },
+              "queryRef": "InventorySummary.days_of_supply",
+              "nativeQueryRef": "days_of_supply"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventorySummary"
+                    }
+                  },
+                  "Property": "turnover_ratio"
+                }
+              },
+              "queryRef": "InventorySummary.turnover_ratio",
+              "nativeQueryRef": "turnover_ratio"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inventory Detail'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

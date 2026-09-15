@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "acb6b0ef-1069-479d-8a14-b9ddf57b5016",
+  "position": {
+    "x": 20,
+    "y": 380,
+    "z": 0,
+    "width": 1240,
+    "height": 280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "store_name"
+                }
+              },
+              "queryRef": "StorePerformance.store_name",
+              "nativeQueryRef": "store_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "StorePerformance.month",
+              "nativeQueryRef": "month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "revenue"
+                }
+              },
+              "queryRef": "StorePerformance.revenue",
+              "nativeQueryRef": "revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "cogs_estimate"
+                }
+              },
+              "queryRef": "StorePerformance.cogs_estimate",
+              "nativeQueryRef": "cogs_estimate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "opex_estimate"
+                }
+              },
+              "queryRef": "StorePerformance.opex_estimate",
+              "nativeQueryRef": "opex_estimate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "profit_estimate"
+                }
+              },
+              "queryRef": "StorePerformance.profit_estimate",
+              "nativeQueryRef": "profit_estimate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StorePerformance"
+                    }
+                  },
+                  "Property": "roi_pct"
+                }
+              },
+              "queryRef": "StorePerformance.roi_pct",
+              "nativeQueryRef": "roi_pct"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Store Profitability Detail'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
