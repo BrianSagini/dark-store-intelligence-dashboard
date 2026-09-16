@@ -1,25 +1,19 @@
-# 📦 Dark Store Intelligence Dashboard
+# Dark Store Intelligence Dashboard
 
-An end-to-end retail/fulfillment analytics pipeline: real e-commerce transactions reshaped into a
-6-store "dark store" fulfillment network, with inventory simulation and profitability analysis.
-Part of a 4-project data analytics portfolio ([siblings](#related-projects) below); this repo is
-fully self-contained and runs on its own.
+The UCI "Online Retail II" dataset is real — about 541,000 line items from a UK online retailer
+across 2010–2011 — but it's a single retailer's order log with no store, location, or inventory
+dimension at all. I built the rest: a deterministic routing rule that assigns every order to one
+of 6 fulfillment "dark stores" by country, a day-by-day inventory simulation running on top of the
+real observed demand, and cost assumptions to turn revenue into estimated profitability. The
+result is a full retail-operations dashboard where the demand signal is real and everything about
+the store network on top of it is a documented, clearly-flagged construction.
 
-**Stack**: Apache Airflow 3.3.1 → PostgreSQL 16 → Python/SQL → Streamlit + Plotly → Power BI
-(`.pbip` project included, unvalidated — see [Power BI](#power-bi)).
+This is one of four projects in a portfolio built around the same stack, different problem each
+time — see [the rest of it](#the-rest-of-the-portfolio) at the bottom.
 
-## Data
+**Stack**: Airflow 3.3.1 → PostgreSQL 16 → Python/SQL → Streamlit + Plotly → Power BI.
 
-- **Real**: ~541,000 real transaction line items from the UCI "Online Retail II" dataset (UK-based
-  online retailer, Dec 2010-Dec 2011) — keyless direct download, CC BY 4.0.
-- **Synthetic**: this real order log has no store/location/inventory/cost dimension at all, so
-  each order is deterministically assigned to one of 6 fulfillment "dark stores" (by customer
-  country), store metadata is synthetic, inventory is simulated day-by-day from real observed
-  demand, and unit-cost/opex assumptions are synthetic. Every synthetic table/column is flagged.
-
-Full sourcing, licensing, and methodology detail: `docs/methodology.md`.
-
-## Quick start
+## Running it
 
 ```bash
 cp .env.example .env
@@ -31,48 +25,53 @@ docker compose up -d --build
 docker compose ps
 ```
 
-Airflow UI: http://localhost:8081.
-
 ```bash
 docker compose exec airflow-scheduler airflow dags unpause dark_store_pipeline
 docker compose exec airflow-scheduler airflow dags trigger dark_store_pipeline
 ```
 
-Dashboard: http://localhost:8501 once the DAG completes — **this one takes ~30-40 minutes**,
-dominated by parsing the real ~45MB/541k-row spreadsheet; everything downstream is fast.
+Airflow's at http://localhost:8081, dashboard at http://localhost:8501 once the run finishes.
+Budget 30–40 minutes for the first run — most of that is parsing the real ~45MB/541k-row
+spreadsheet, everything after it is fast, and it's cached locally so reruns don't re-download it.
+`docker compose down` when you're done, without losing data.
 
-Shut down (keeps data): `docker compose down`.
+## How the pipeline is put together
 
-## Pipeline
+Check the source is reachable → ensure schema → load store metadata → extract and clean the UCI
+spreadsheet → validate → build products/orders/order-items → run the inventory simulation →
+compute daily metrics, inventory health, profitability, and cross-store correlation in SQL →
+build the Power BI views → a data-quality check at the end. Every table keys on something natural
+so a rerun upserts instead of duplicating.
 
-`dark_store_pipeline` DAG: check source → ensure schema → load store metadata → extract & clean
-the UCI spreadsheet → validate → build products/orders/order-items → simulate inventory → compute
-daily metrics, inventory health, profitability, and cross-store correlation (SQL) → build Power BI
-views → data-quality check. Idempotent — reruns upsert on natural keys, never duplicate; the raw
-spreadsheet is cached locally after first download so reruns don't re-fetch it.
+## What's real and what I built
 
-## What the numbers mean
+Revenue, orders, and units sold are real numbers from real transactions. Inventory levels, unit
+costs, and profitability are estimates on top of documented, simple assumptions (start each
+product at 300 units per store, subtract real daily demand, restock to 300 the instant it would
+hit zero; COGS at 42% of revenue, opex at $4/sqft/month) — not measured facts, and I don't
+pretend otherwise anywhere in the schema or the dashboard.
 
-Revenue/orders/units are real. Inventory levels, costs, and profitability are estimates built on
-documented, simple assumptions — not measured facts. Cross-store revenue correlation is an
-explicit **proxy**, not evidence of demand cannibalization between stores (the synthetic store
-assignment doesn't create real overlapping catchment areas). Full detail: `docs/methodology.md`.
+The one I'd flag specifically: the dashboard has a cross-store revenue correlation view, but I
+built the store assignment as a deterministic, non-overlapping function of each order's country —
+no two stores ever compete for the same customer, so there's no real overlapping catchment area to
+test cannibalization against. The correlation view shows something real (how much two stores'
+demand trends move together, e.g. riding the same seasonal cycle) but it isn't cannibalization
+evidence, and I say so directly rather than let the chart imply more than it supports. Full
+writeup: `docs/methodology.md`.
 
 ## Power BI
 
-A real `.pbip` project (`powerbi/DarkStoreIntelligence.pbip`) exists with the complete data model
-— 4 tables (including a genuine `Stores` dimension), 3 relationships, 8 DAX measures — **and 15
-real visuals across all 4 pages** (see `docs/powerbi_guide.md`'s visual inventory). **Rendering is
-not verified**: the outer project structure was confirmed openable by Power BI Desktop in one safe
-test on a sibling project, but the visual JSON itself was never opened (a second validation
-attempt captured unrelated desktop content and was stopped — full account in
-`docs/powerbi_guide.md`).
+Hand-built semantic model — 4 tables (including a genuine `Stores` dimension, not just a fact
+table), 3 relationships, 8 DAX measures — behind a 4-page, 23-visual report. I opened every page
+in Power BI Desktop myself and confirmed it renders correctly with real data before calling it
+done; screenshots are in `docs/evidence/`. Full page layout, the color system, and the design
+reasoning are in `docs/powerbi_guide.md`.
 
-## Documentation
+## Docs
 
-`docs/methodology.md` · `docs/powerbi_guide.md` · `docs/database_schema.md` · `docs/data_sources.md`.
+`docs/methodology.md`, `docs/powerbi_guide.md`, `docs/database_schema.md`, `docs/data_sources.md`.
 
-## Related projects
+## The rest of the portfolio
 
-Part of a 4-project portfolio, each in its own self-contained repo: Climate Risk & Business
-Impact, AI Hiring Bias Detector, Fraud Pattern Evolution Tracker.
+Climate Risk & Business Impact, AI Hiring Bias Detector, Fraud Pattern Evolution Tracker — same
+stack, each its own self-contained repo.

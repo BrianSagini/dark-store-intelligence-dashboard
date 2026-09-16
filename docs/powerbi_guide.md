@@ -4,7 +4,7 @@
 
 A real `.pbip` project exists at `powerbi/DarkStoreIntelligence.pbip`. Real and complete: 4 tables
 (3 fact views + a genuine `Stores` dimension), 3 relationships, all 8 DAX measures below, **23
-real visual objects across all 4 pages** (19 data visuals + a header/footer text box per page —
+real visual objects across all 4 pages** (15 data visuals + a header/footer text box per page —
 see [Visual inventory](#visual-inventory)), a custom theme (`DarkStoreTheme.json`, wired into
 `report.json`), and semantic accent colors (see Design system).
 
