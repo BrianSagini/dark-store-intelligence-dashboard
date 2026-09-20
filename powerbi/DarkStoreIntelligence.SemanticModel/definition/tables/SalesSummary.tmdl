@@ -94,7 +94,7 @@ table SalesSummary
 		mode: import
 		source =
 				let
-					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					Source = PostgreSQL.Database("localhost:5435", "analytics"),
 					dark_store_powerbi_sales_summary = Source{[Schema="dark_store",Item="powerbi_sales_summary"]}[Data]
 				in
 					dark_store_powerbi_sales_summary

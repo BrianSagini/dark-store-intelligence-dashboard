@@ -79,7 +79,7 @@ table Stores
 		mode: import
 		source =
 				let
-					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					Source = PostgreSQL.Database("localhost:5435", "analytics"),
 					dark_store_stores = Source{[Schema="dark_store",Item="stores"]}[Data]
 				in
 					dark_store_stores

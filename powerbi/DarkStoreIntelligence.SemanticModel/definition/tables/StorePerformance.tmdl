@@ -108,7 +108,7 @@ table StorePerformance
 		mode: import
 		source =
 				let
-					Source = PostgreSQL.Database("localhost:5433", "analytics"),
+					Source = PostgreSQL.Database("localhost:5435", "analytics"),
 					dark_store_powerbi_store_performance = Source{[Schema="dark_store",Item="powerbi_store_performance"]}[Data]
 				in
 					dark_store_powerbi_store_performance
