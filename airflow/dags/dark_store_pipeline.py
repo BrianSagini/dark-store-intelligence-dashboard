@@ -2,13 +2,17 @@
 
 Real UCI "Online Retail II" transactions -> synthetic store assignment ->
 synthetic inventory simulation -> SQL analytics (daily metrics, inventory
-health, profitability, cross-store correlation) -> data-quality check.
+health, profitability, cross-store correlation) -> demand-forecasting model
+training (XGBoost vs. a day-of-week seasonal-naive baseline, time-based
+split, plus a reorder-policy comparison against the existing flat-300 rule)
+-> data-quality check.
 
 See projects/02_dark_store_intelligence/pipeline.py and
 docs/methodology_dark_store.md for what's real vs. synthetic here.
 """
 from __future__ import annotations
 
+import logging
 import os
 import tempfile
 from datetime import timedelta
@@ -107,7 +111,11 @@ with DAG(
         return pipeline.compute_and_load_analytics()
 
     @task
-    def create_powerbi_views(_analytics: dict) -> None:
+    def train_demand_model(_analytics: dict) -> dict:
+        return pipeline.train_demand_model()
+
+    @task
+    def create_powerbi_views(_model_result: dict) -> None:
         from shared.database import run_sql_file
         run_sql_file(os.path.join(os.path.dirname(pipeline.__file__), "sql", "006_powerbi_views.sql"))
 
@@ -122,10 +130,41 @@ with DAG(
             negative_revenue = conn.exec_driver_sql(
                 "SELECT COUNT(*) FROM dark_store.store_daily_metrics WHERE revenue < 0"
             ).scalar()
+            model_rows = conn.exec_driver_sql(
+                "SELECT model_name, mae, rmse FROM dark_store.model_evaluation"
+            ).all()
         if orphan_items:
             raise ValueError(f"{orphan_items} order_items reference a missing order")
         if negative_revenue:
             raise ValueError(f"{negative_revenue} store_daily_metrics rows have negative revenue")
+
+        required_models = {"xgboost_demand_model", "seasonal_naive_dow"}
+        present = {name: (mae, rmse) for name, mae, rmse in model_rows}
+        missing = required_models - set(present)
+        if missing:
+            raise ValueError(f"dark_store.model_evaluation is missing rows for: {sorted(missing)}")
+        for name, (mae, rmse) in present.items():
+            if mae is None or rmse is None or mae < 0 or rmse < 0:
+                raise ValueError(f"{name} has an invalid (NULL or negative) MAE/RMSE in model_evaluation")
+
+        # The model beating the baseline is not required to pass this gate --
+        # a hand-simple seasonal-naive average winning against a
+        # gradient-boosted model is a legitimate result on this data (highly
+        # intermittent per-product demand), not a pipeline bug. But it must
+        # never pass silently: log it loudly so it shows up in the task logs
+        # every single run, whichever way it lands.
+        model_mae, baseline_mae = present["xgboost_demand_model"][0], present["seasonal_naive_dow"][0]
+        if model_mae >= baseline_mae:
+            logging.warning(
+                "xgboost_demand_model MAE (%.4f) does NOT beat the seasonal_naive_dow baseline (%.4f) "
+                "on this run -- the simple baseline is currently the better forecaster. See docs/model_card.md.",
+                model_mae, baseline_mae,
+            )
+        else:
+            logging.info(
+                "xgboost_demand_model MAE (%.4f) beats the seasonal_naive_dow baseline (%.4f).",
+                model_mae, baseline_mae,
+            )
 
     src_ok = check_source_available()
     schema = ensure_schema()
@@ -138,7 +177,8 @@ with DAG(
     items_loaded = load_order_items_task(items_path)
     inv_loaded = simulate_and_load_inventory(items_path)
     analytics = compute_analytics(items_loaded, inv_loaded)
-    views = create_powerbi_views(analytics)
+    model_result = train_demand_model(analytics)
+    views = create_powerbi_views(model_result)
     dq = data_quality_check(views)
 
     src_ok >> schema

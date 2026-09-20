@@ -94,3 +94,43 @@ CREATE TABLE IF NOT EXISTS dark_store.cross_store_correlation (
 
 CREATE INDEX IF NOT EXISTS idx_order_items_order_date ON dark_store.order_items(order_date);
 CREATE INDEX IF NOT EXISTS idx_inventory_snapshot_date ON dark_store.inventory_snapshots(snapshot_date);
+
+-- Demand-forecasting model evaluation. Same shape as fraud_pattern's and
+-- climate_risk's model_evaluation (model_name, real metrics, computed_at)
+-- for consistency across the portfolio's ML tables -- MAE/RMSE here since
+-- this is a regression problem, not classification.
+CREATE TABLE IF NOT EXISTS dark_store.model_evaluation (
+    model_name    TEXT NOT NULL,
+    mae           DOUBLE PRECISION NOT NULL,
+    rmse          DOUBLE PRECISION NOT NULL,
+    computed_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (model_name)
+);
+
+-- Test-set-only demand predictions (mirrors fraud_pattern.anomaly_scores'
+-- and climate_risk.risk_model_predictions' pattern of only ever writing
+-- held-out-set predictions, never train-set ones). Both the XGBoost model
+-- and the seasonal-naive baseline are written, keyed by model_name.
+CREATE TABLE IF NOT EXISTS dark_store.demand_forecast_predictions (
+    store_id           TEXT NOT NULL REFERENCES dark_store.stores(store_id),
+    stock_code         TEXT NOT NULL REFERENCES dark_store.products(stock_code),
+    snapshot_date       DATE NOT NULL,
+    model_name          TEXT NOT NULL,
+    predicted_demand    DOUBLE PRECISION NOT NULL,
+    actual_demand       INT NOT NULL,
+    computed_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (store_id, stock_code, snapshot_date, model_name)
+);
+
+-- The business-value comparison: the existing fixed-restock-to-300 policy
+-- vs. a forecast-informed restock policy, replayed over the same held-out
+-- real demand for each dense (store, product) pair. See docs/model_card.md.
+CREATE TABLE IF NOT EXISTS dark_store.reorder_policy_comparison (
+    store_id            TEXT NOT NULL REFERENCES dark_store.stores(store_id),
+    stock_code          TEXT NOT NULL REFERENCES dark_store.products(stock_code),
+    policy_name          TEXT NOT NULL,
+    stockout_days        INT NOT NULL,
+    avg_stock_on_hand    DOUBLE PRECISION NOT NULL,
+    computed_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (store_id, stock_code, policy_name)
+);
