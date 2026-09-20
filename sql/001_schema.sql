@@ -134,3 +134,28 @@ CREATE TABLE IF NOT EXISTS dark_store.reorder_policy_comparison (
     computed_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
     PRIMARY KEY (store_id, stock_code, policy_name)
 );
+
+-- H2O AutoML leaderboard from demand_forecast_model.ipynb's "AutoML sanity
+-- check (H2O)" section -- the aml.leaderboard object itself doesn't survive
+-- that notebook's session, so this is the persisted record of it, read by
+-- the small automl/app.py Streamlit page (separate from the main
+-- dashboard). One row per model H2O trained in that AutoML run, ranked by
+-- its own sort_metric (MAE here).
+CREATE TABLE IF NOT EXISTS dark_store.automl_leaderboard (
+    model_id                TEXT PRIMARY KEY,
+    algorithm                TEXT NOT NULL,
+    rank                     INT NOT NULL,
+    is_leader                BOOLEAN NOT NULL DEFAULT FALSE,
+    auc                      DOUBLE PRECISION,
+    logloss                  DOUBLE PRECISION,
+    aucpr                    DOUBLE PRECISION,
+    mean_per_class_error     DOUBLE PRECISION,
+    mae                      DOUBLE PRECISION,
+    rmse                     DOUBLE PRECISION,
+    mse                      DOUBLE PRECISION,
+    rmsle                    DOUBLE PRECISION,
+    mean_residual_deviance   DOUBLE PRECISION,
+    target_column            TEXT NOT NULL,
+    project_name             TEXT NOT NULL,
+    trained_at               TIMESTAMPTZ NOT NULL
+);
