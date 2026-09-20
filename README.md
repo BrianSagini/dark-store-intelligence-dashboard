@@ -30,8 +30,9 @@ docker compose exec airflow-scheduler airflow dags unpause dark_store_pipeline
 docker compose exec airflow-scheduler airflow dags trigger dark_store_pipeline
 ```
 
-Airflow's at http://localhost:8081, dashboard at http://localhost:8501 once the run finishes.
-Budget 30–40 minutes for the first run — most of that is parsing the real ~45MB/541k-row
+Airflow's at http://localhost:8081. Live public dashboard: https://dark-store-intelligence.streamlit.app/
+(reads from a shared cloud database, not this local stack) -- your own local run's dashboard is at
+http://localhost:8501 once the run finishes. Budget 30–40 minutes for the first run — most of that is parsing the real ~45MB/541k-row
 spreadsheet, everything after it is fast, and it's cached locally so reruns don't re-download it.
 `docker compose down` when you're done, without losing data.
 
